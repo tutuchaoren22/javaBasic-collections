@@ -71,10 +71,8 @@ class CollectionsTest {
         RandomCharacterIterable characters = new RandomCharacterIterable(
                 oneGagaChars,
                 new Character[]{'a', 'b'});
-
         List<Character> distinct = new DistinctIterable<>(characters).toList();
         distinct.sort(Character::compareTo);
-
         assertIterableEquals(Arrays.asList('a', 'b'), distinct);
     }
 
