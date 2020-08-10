@@ -1,8 +1,6 @@
 package com.cultivation.javaBasic.showYourIntelligence;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class DistinctIterable<T> implements Iterable<T> {
     private Iterable<T> iterable;
@@ -28,27 +26,25 @@ class DistinctIterator<E> implements Iterator<E> {
     // <--start
     @SuppressWarnings({"FieldCanBeLocal", "unused"})
     private final Iterator<E> iterator;
-    private List<E> eList = new ArrayList<>();
+    private Map<Integer, E> distinctElement = new HashMap<>();
     private int currentInd = 0;
 
     DistinctIterator(Iterator<E> iterator) {
         while (iterator.hasNext()) {
-            E e = iterator.next();
-            if (!eList.contains(e)) {
-                eList.add(e);
-            }
+            distinctElement.put(currentInd, iterator.next());
         }
+
         this.iterator = iterator;
     }
 
     @Override
     public boolean hasNext() {
-        return currentInd < eList.size();
+        return currentInd < distinctElement.size();
     }
 
     @Override
     public E next() {
-        return eList.get(currentInd++);
+        return distinctElement.get(currentInd++);
     }
     // --end->
 }
